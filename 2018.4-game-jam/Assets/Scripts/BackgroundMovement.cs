@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  * BackgroundMovement class
- * 
+ * This scrolls the background to make it look like the player is moving upwards in the scene
  * 
  * */
 public class BackgroundMovement : MonoBehaviour {
@@ -12,17 +12,14 @@ public class BackgroundMovement : MonoBehaviour {
 	public float movingSpeed;
 	public GameObject camera;
 
-	// Use this for initialization
-	void Start () {
-	}
-
-
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.y <= (camera.transform.position.y - 16)) {
+		//checks the camera position with the associated background position
+		if (transform.position.y <= (camera.transform.position.y - 16)) { 
+			//move the background back to the original position so it cycles
 			transform.position = new Vector3(camera.transform.position.x, (camera.transform.position.y + 7), 0);
 		} else {
-			transform.position += movingSpeed * Vector3.down;
+			transform.position += movingSpeed * Vector3.down; //move the background down
 		}
 	}
 }
