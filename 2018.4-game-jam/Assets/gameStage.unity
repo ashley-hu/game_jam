@@ -574,68 +574,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &907677732
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.1803046
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.0593848
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4480257170658468, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ceb66547cf9c74c99b3f61b09ae5f197, type: 2}
-  m_IsPrefabParent: 0
---- !u!1 &907677733 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1370258935457936, guid: ceb66547cf9c74c99b3f61b09ae5f197,
-    type: 2}
-  m_PrefabInternal: {fileID: 907677732}
---- !u!58 &907677734
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907677733}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1182303983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rageMeter: {fileID: 1186772470}
+  fillMeter: {fileID: 457946736}
 --- !u!1 &1886903311
 GameObject:
   m_ObjectHideFlags: 0
