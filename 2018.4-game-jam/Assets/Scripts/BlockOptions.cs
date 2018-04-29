@@ -24,5 +24,9 @@ public class BlockOptions : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
+		if(coll.gameObject.tag == "Player"){
+			GameManager.rageReceived += 0.1f;
+			Destroy (this.gameObject);
+		}
 	}
 }
