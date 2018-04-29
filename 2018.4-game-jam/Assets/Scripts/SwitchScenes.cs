@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * SwitchScenes class
+ * Controls the switch between scenes
+ * Build index 
+ * 0 = startStage
+ * 1 = gameStage
+ * 2 = endStage
+ * 
+ * */
 public class SwitchScenes : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	//Start the game when player presses "start"
+	public void SwitchToGameStageFromStartStage(){
+		if (SceneManager.GetActiveScene ().buildIndex == 0) {
+			SceneManager.LoadScene ("gameStage");
+		}
 	}
 
-	public void SwitchToGameStage(){
-		if (SceneManager.GetActiveScene ().buildIndex == 0) {
+	//Restart the game after the player presses "play again"
+	public void SwitchToGameStageFromEndStage(){
+		if (SceneManager.GetActiveScene ().buildIndex == 2) {
 			SceneManager.LoadScene ("gameStage");
 		}
 	}
