@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public Slider rageMeter;
 	public static float rageReceived;
+	public static float currRage;
 	public Image fillMeter;
 
 	private GameObject scoreText;
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	private float roundScore;
 	private float maxRage;
 	private GameObject[] allObstacles;
+	private int rageCount;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour {
 		rageMeter.value = 0;
 		rageMeter.maxValue = maxRage;
 		rageReceived = 0;
+		rageCount = 0;
+		currRage = rageReceived;
 	}
 	
 	// Update is called once per frame
@@ -41,9 +46,11 @@ public class GameManager : MonoBehaviour {
 			fillMeter.color = Color.Lerp (Color.yellow, Color.red, rageReceived / 1);
 		}
 			
-		if (rageMeter.value == maxRage) {
+		if (rageMeter.value == maxRage && rageCount < 3) {
 			UnleashRage ();
-		} else if (rageMeter.value > maxRage) {
+		}
+		if (currRage > (maxRage + 0.1f)) { //losing condition
+			SceneManager.LoadScene ("endStage");
 		}
 	}
 
@@ -58,6 +65,8 @@ public class GameManager : MonoBehaviour {
 			maxRage -= 0.1f;
 			rageMeter.maxValue = maxRage;
 			score -= 100;
+			rageCount++;
+			currRage = rageReceived;
 		}
 	}
 }

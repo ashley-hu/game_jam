@@ -26,6 +26,8 @@ public class BlockOptions : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if(coll.gameObject.tag == "Player"){
 			GameManager.rageReceived += 0.1f;
+			GameManager.currRage += 0.1f;
+			Debug.Log ("Curr Rage: " + GameManager.currRage);
 			Destroy (this.gameObject);
 		}
 	}
