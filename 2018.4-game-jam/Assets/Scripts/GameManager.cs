@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Image fillMeter;
 
 	private GameObject scoreText;
+	private GameObject rageText;
 	private float score;
 	private float roundScore;
 	private float maxRage;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoreText = GameObject.FindWithTag ("Score");
+		rageText = GameObject.FindWithTag ("RageCount");
 		score = 0;
 		maxRage = 1;
 		rageMeter.value = 0;
@@ -38,6 +40,9 @@ public class GameManager : MonoBehaviour {
 			roundScore = Mathf.RoundToInt (score);
 			scoreText.GetComponent<Text> ().text = "Score: " + roundScore.ToString();
 		}
+		if (rageText != null) {
+			rageText.GetComponent<Text> ().text = "Rage: " + (3 - rageCount).ToString();
+		}
 		rageMeter.value = rageReceived;
 		if (rageReceived <= 0) {
 			fillMeter.color = new Color(1, 0.92f, 0.016f, 0); //set slider circle to be transparent
@@ -46,7 +51,7 @@ public class GameManager : MonoBehaviour {
 			fillMeter.color = Color.Lerp (Color.yellow, Color.red, rageReceived / 1);
 		}
 			
-		if (rageMeter.value == maxRage && rageCount < 3) {
+		if (rageMeter.value == maxRage && rageCount < 3) { //let user unleash rage
 			UnleashRage ();
 		}
 		if (currRage > (maxRage + 0.1f)) { //losing condition

@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/gameStage.unity
     guid: 57313ad8ff5e340c69f8b64bc5342a88
+  - enabled: 1
+    path: Assets/endStage.unity
+    guid: 10a037f57a2d047c58aae073d688ddaa
