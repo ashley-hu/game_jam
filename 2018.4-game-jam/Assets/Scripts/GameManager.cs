@@ -10,11 +10,11 @@ public class GameManager : MonoBehaviour {
 	public static float rageReceived;
 	public static float currRage;
 	public Image fillMeter;
+	public static float roundScore;
 
 	private GameObject scoreText;
 	private GameObject rageText;
 	private float score;
-	private float roundScore;
 	private float maxRage;
 	private GameObject[] allObstacles;
 	private int rageCount;
