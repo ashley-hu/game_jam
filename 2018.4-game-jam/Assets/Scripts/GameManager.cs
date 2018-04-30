@@ -100,6 +100,11 @@ public class GameManager : MonoBehaviour {
 
 			score -= 100;
 			rageCount += 1;
+
+			FallingDown.increaseAmount = 3;
+			FallingDown.increaseCounter = 0;
+			FallingDown.minSpeed = 0f;
+			FallingDown.maxSpeed = 1f;
 		}
 	}
 }

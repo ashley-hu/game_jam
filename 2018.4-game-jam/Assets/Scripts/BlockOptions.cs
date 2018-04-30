@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BlockOptions : MonoBehaviour {
 
-	private float speed;
+	public float speed;
 
 	GameObject player;
 
 	// Use this for initialization
 	void Start () {
-		speed = Random.Range (0f, 1f);
+		//speed = Random.Range (0f, 1f);
 		transform.position = new Vector3 (transform.position.x, transform.position.y + speed, 0);
-
 		player = GameObject.FindWithTag ("Player");
+		Debug.Log ("speed: " + speed);
 	}
 	
 	// Update is called once per frame
