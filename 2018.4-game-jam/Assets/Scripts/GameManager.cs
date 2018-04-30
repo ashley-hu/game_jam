@@ -4,20 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*This script counts score and rage,
+ * and display them on screen*/
+
 public class GameManager : MonoBehaviour {
 
-	public Slider rageMeter;
-	public static float rageReceived;
+	//public static float rageReceived;
 	public static float currRage;
-	public Image fillMeter;
 	public static float roundScore;
+	public Slider rageMeter;
+	public Image fillMeter;
 
-	private GameObject scoreText;
-	private GameObject rageText;
+
 	private float score;
 	private float maxRage;
-	private GameObject[] allObstacles;
 	private int rageCount;
+	private GameObject scoreText;
+	private GameObject rageText;
+	private GameObject[] allObstacles;
+
 
 	// Use this for initialization
 	void Start () {
@@ -27,34 +32,56 @@ public class GameManager : MonoBehaviour {
 		maxRage = 1;
 		rageMeter.value = 0;
 		rageMeter.maxValue = maxRage;
-		rageReceived = 0;
+		//rageReceived = 0;
 		rageCount = 0;
-		currRage = rageReceived;
+		//currRage = rageReceived;
+		currRage = 0;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
+
+		//Display the current score on canvas
 		if (scoreText != null) {
-			//display the current score on canvas
 			score += Time.deltaTime;
 			roundScore = Mathf.RoundToInt (score);
 			scoreText.GetComponent<Text> ().text = "Score: " + roundScore.ToString();
 		}
+
+
+		//Display the remaining rage-unleashing chances
 		if (rageText != null) {
 			rageText.GetComponent<Text> ().text = "Rage: " + (3 - rageCount).ToString();
 		}
-		rageMeter.value = rageReceived;
-		if (rageReceived <= 0) {
+
+
+		//Updating the rage bar with rage value
+		rageMeter.value = currRage;
+
+		if (currRage <= 0) {
 			fillMeter.color = new Color(1, 0.92f, 0.016f, 0); //set slider circle to be transparent
 		} else {
 			//change the color from yellow to red as you receive more "rage"
-			fillMeter.color = Color.Lerp (Color.yellow, Color.red, rageReceived / 1);
+			fillMeter.color = Color.Lerp (Color.yellow, Color.red, currRage / 1);
 		}
-			
-		if (rageMeter.value == maxRage && rageCount < 3) { //let user unleash rage
+
+
+		//If there's still chance to unleash rage and rage bar is full, let player unleash rage
+		if ((rageMeter.value == maxRage) && (rageCount < 3)) {
 			UnleashRage ();
 		}
-		if (currRage > (maxRage + 0.1f)) { //losing condition
+
+
+		//Game over when rage bar overflows
+		if (currRage > (maxRage + 0.05f)) {
+			SceneManager.LoadScene ("endStage");
+		}
+
+		Debug.Log (currRage);
+
+		//Game over when rage bar reaches the max and there's no chance to unleash rage
+		if ((rageCount >= 3) && (rageMeter.value == maxRage)) {
 			SceneManager.LoadScene ("endStage");
 		}
 	}
@@ -66,12 +93,14 @@ public class GameManager : MonoBehaviour {
 			for(var i = 0 ; i < allObstacles.Length ; i ++){
 				Destroy(allObstacles[i]);
 			}
-			rageReceived = 0;
+			currRage = 0;
 			maxRage -= 0.1f;
+
 			rageMeter.maxValue = maxRage;
+			rageMeter.value = currRage;
+
 			score -= 100;
-			rageCount++;
-			currRage = rageReceived;
+			rageCount += 1;
 		}
 	}
 }
