@@ -12,12 +12,13 @@ public class GameManager : MonoBehaviour {
 	//public static float rageReceived;
 	public static float currRage;
 	public static float roundScore;
+	public static float maxRage;
 	public Slider rageMeter;
 	public Image fillMeter;
 
 
 	private float score;
-	private float maxRage;
+
 	private int rageCount;
 	private GameObject scoreText;
 	private GameObject rageText;

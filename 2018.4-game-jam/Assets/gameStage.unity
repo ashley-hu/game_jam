@@ -659,6 +659,7 @@ GameObject:
   - component: {fileID: 1182303986}
   - component: {fileID: 1182303985}
   - component: {fileID: 1182303984}
+  - component: {fileID: 1182303990}
   - component: {fileID: 1182303987}
   - component: {fileID: 1182303988}
   - component: {fileID: 1182303989}
@@ -789,6 +790,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1182303990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182303983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99255ac4e729648ff846eb792b5695ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  upsetColor: {r: 1, g: 0.878, b: 0, a: 1}
+  pissedColor: {r: 1, g: 0.49411765, b: 0, a: 1}
+  angryColor: {r: 1, g: 0.087, b: 0, a: 1}
 --- !u!1 &1186772468
 GameObject:
   m_ObjectHideFlags: 0

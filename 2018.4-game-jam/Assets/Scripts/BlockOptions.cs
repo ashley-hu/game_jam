@@ -6,10 +6,14 @@ public class BlockOptions : MonoBehaviour {
 
 	private float speed;
 
+	GameObject player;
+
 	// Use this for initialization
 	void Start () {
 		speed = Random.Range (0f, 1f);
 		transform.position = new Vector3 (transform.position.x, transform.position.y + speed, 0);
+
+		player = GameObject.FindWithTag ("Player");
 	}
 	
 	// Update is called once per frame
@@ -25,6 +29,8 @@ public class BlockOptions : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll){
 		if(coll.gameObject.tag == "Player"){
+			player.GetComponent<PlayerAnimation> ().MakeStun ();
+
 			GameManager.currRage += 0.1f; //keep count of rage for losing condition
 			Destroy (this.gameObject);
 		}
