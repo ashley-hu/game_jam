@@ -79,8 +79,6 @@ public class GameManager : MonoBehaviour {
 			SceneManager.LoadScene ("endStage");
 		}
 
-		Debug.Log (currRage);
-
 		//Game over when rage bar reaches the max and there's no chance to unleash rage
 		if ((rageCount >= 3) && (rageMeter.value == maxRage)) {
 			SceneManager.LoadScene ("endStage");
