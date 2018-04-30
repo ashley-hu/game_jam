@@ -660,9 +660,11 @@ GameObject:
   - component: {fileID: 1182303985}
   - component: {fileID: 1182303984}
   - component: {fileID: 1182303990}
+  - component: {fileID: 1182303992}
   - component: {fileID: 1182303987}
   - component: {fileID: 1182303988}
   - component: {fileID: 1182303989}
+  - component: {fileID: 1182303991}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -805,6 +807,98 @@ MonoBehaviour:
   upsetColor: {r: 1, g: 0.878, b: 0, a: 1}
   pissedColor: {r: 1, g: 0.49411765, b: 0, a: 1}
   angryColor: {r: 1, g: 0.087, b: 0, a: 1}
+--- !u!82 &1182303991
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182303983}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &1182303992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182303983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ace1ab7d4ba2493e8e99e3d8590f238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screamClip: {fileID: 8300000, guid: 841c8b57bfbad4229b51fca6d58cbe62, type: 3}
 --- !u!1 &1186772468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,7 +1155,7 @@ GameObject:
   - component: {fileID: 1484153279}
   - component: {fileID: 1484153281}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Event Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,6 +1172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162f1ffb29c67458b929c39c1ea43f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite0: {fileID: 21300000, guid: f5fde31c2c8c44e91b959cf9c5681416, type: 3}
+  sprite1: {fileID: 21300000, guid: f13158603e5874fbb9c05122d6744a4f, type: 3}
+  sprite2: {fileID: 21300000, guid: 1c8c3ebad47b34efa86ceb3859cd26bb, type: 3}
+  sprite3: {fileID: 21300000, guid: 782b75083dbca4425a7c0b05d82476aa, type: 3}
 --- !u!4 &1484153280
 Transform:
   m_ObjectHideFlags: 0
@@ -1104,6 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rageMeter: {fileID: 1186772470}
   fillMeter: {fileID: 457946736}
+  player: {fileID: 1182303983}
 --- !u!1 &1886903311
 GameObject:
   m_ObjectHideFlags: 0

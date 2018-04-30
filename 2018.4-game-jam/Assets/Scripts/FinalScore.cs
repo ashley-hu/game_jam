@@ -9,6 +9,7 @@ public class FinalScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = true;
 		finalScore = GameObject.FindWithTag ("FinalScore");
 	}
 	

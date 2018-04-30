@@ -14,6 +14,13 @@ public class FallingDown : MonoBehaviour {
 	public static float minSpeed;
 	public static float maxSpeed;
 
+	public Sprite sprite0;
+	public Sprite sprite1;
+	public Sprite sprite2;
+	public Sprite sprite3;
+
+	Sprite[] spriteArray = new Sprite[4];
+
 	// Use this for initialization
 	void Start () {
 		blocks = Resources.Load("Blocks");
@@ -28,6 +35,11 @@ public class FallingDown : MonoBehaviour {
 			//Instantiate(blocks, new Vector3(posX, posY, 0), Quaternion.identity);
 			Create(minSpeed, maxSpeed, posX, posY);
 		}
+
+		spriteArray [0] = sprite0;
+		spriteArray [1] = sprite1;
+		spriteArray [2] = sprite2;
+		spriteArray [3] = sprite3;
 	}
 	
 	// Update is called once per frame
@@ -59,8 +71,15 @@ public class FallingDown : MonoBehaviour {
 		}
 	}
 
-	public static BlockOptions Create(float minS, float maxS, float x, float y){
+	BlockOptions Create(float minS, float maxS, float x, float y){
 		GameObject newObject = Instantiate(blocks, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
+
+		int spriteNum = Random.Range (0, 4);
+		newObject.GetComponent<SpriteRenderer> ().sprite = spriteArray [spriteNum];
+
+		float scale = Random.Range (0.8f, 1.2f);
+		newObject.transform.localScale = new Vector3 (scale, scale, 1);
+
 		BlockOptions obs = newObject.GetComponent<BlockOptions>();
 		obs.speed = Random.Range (minS, maxS);
 		return obs;

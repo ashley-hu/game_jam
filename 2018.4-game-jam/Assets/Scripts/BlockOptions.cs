@@ -13,13 +13,12 @@ public class BlockOptions : MonoBehaviour {
 		//speed = Random.Range (0f, 1f);
 		transform.position = new Vector3 (transform.position.x, transform.position.y + speed, 0);
 		player = GameObject.FindWithTag ("Player");
-		Debug.Log ("speed: " + speed);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//move the prefab down the screen
-		transform.position -= new Vector3(0, 1+ speed, 0) * Time.deltaTime * 5;
+		transform.position -= new Vector3(0, 1 + speed, 0) * Time.deltaTime * 5;
 
 		//prefab will be destroyed
 		if (transform.position.y < -5.5f) {

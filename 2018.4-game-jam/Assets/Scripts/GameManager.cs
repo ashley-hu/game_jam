@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public static float maxRage;
 	public Slider rageMeter;
 	public Image fillMeter;
+	public GameObject player;
 
 
 	private float score;
@@ -89,6 +90,9 @@ public class GameManager : MonoBehaviour {
 	public void UnleashRage(){
 		allObstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 		if (Input.GetKeyDown ("space")) {
+			player.GetComponent<PlayerAudioPlayer> ().PlayScream ();
+
+
 			for(var i = 0 ; i < allObstacles.Length ; i ++){
 				Destroy(allObstacles[i]);
 			}
