@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour {
 	private float playerX;
 	private float playerY;
 
+	void Start(){
+		Cursor.visible = false;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
