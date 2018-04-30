@@ -17,7 +17,7 @@ public class BackgroundMovement : MonoBehaviour {
 		//checks the camera position with the associated background position
 		if (transform.position.y <= (camera.transform.position.y - 16)) { 
 			//move the background back to the original position so it cycles
-			transform.position = new Vector3(camera.transform.position.x, (camera.transform.position.y + 7), 0);
+			transform.position = new Vector3(camera.transform.position.x, (camera.transform.position.y + 7.5f), 0);
 		} else {
 			transform.position += movingSpeed * Vector3.down; //move the background down
 		}
