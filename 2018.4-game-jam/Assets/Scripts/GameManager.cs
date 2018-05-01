@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 	public static float currRage;
 	public static float roundScore;
 	public static float maxRage;
+
+	public float deathTimer;
 	public Slider rageMeter;
 	public Image fillMeter;
 	public GameObject player;
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour {
 		shakeTimer = 1f;
 		shakeAmount = 0.2f;
 		setShake = false;
+
+		player.GetComponent<PlayerMovement> ().enabled = true;
 	}
 
 
@@ -87,17 +91,17 @@ public class GameManager : MonoBehaviour {
 
 		//Game over when rage bar overflows
 		if (currRage > (maxRage + 0.05f)) {
-			SceneManager.LoadScene ("endStage");
+			GameOver ();
 		}
 
 		//Game over when rage bar reaches the max and there's no chance to unleash rage
 		if ((rageCount >= 3) && (rageMeter.value == maxRage)) {
-			SceneManager.LoadScene ("endStage");
+			GameOver ();
 		}
 	}
 
 	//Destroy all objects in scene
-	public void UnleashRage(){
+	void UnleashRage(){
 		allObstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 		if (Input.GetKeyDown ("space")) {
 			player.GetComponent<PlayerAudioPlayer> ().PlayScream ();
@@ -135,5 +139,21 @@ public class GameManager : MonoBehaviour {
 			shakeTimer = 1;
 		}
 	}
+
+
+	void GameOver(){
+		player.GetComponent<SpriteRenderer> ().color = Color.white;
+		player.GetComponent<PlayerMovement> ().enabled = false;
+
+		player.GetComponent<PlayerAnimation> ().DestroyFire ();
+		player.GetComponent<PlayerAnimation> ().MakeBurned ();
+
+		deathTimer -= Time.deltaTime;
+
+		if (deathTimer <= 0) {
+			SceneManager.LoadScene ("endStage");
+		}
+	}
+
 }
 

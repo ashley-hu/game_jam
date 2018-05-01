@@ -30,7 +30,7 @@ public class PlayerAnimation : MonoBehaviour {
 			mySpriRend.color = normalColor;
 
 			isOnFire = false;
-			Destroy (fireObject);
+			DestroyFire ();
 		} else if (GameManager.currRage <= (2 * (GameManager.maxRage / 4f))) {
 			MakeUpset ();
 			mySpriRend.color = upsetColor;
@@ -52,7 +52,9 @@ public class PlayerAnimation : MonoBehaviour {
 				isOnFire = true;
 			}
 
-			fireObject.transform.position = this.transform.position + 0.5f * Vector3.up;
+			if (fireObject != null) {
+				fireObject.transform.position = this.transform.position + 0.5f * Vector3.up;
+			}
 		}
 	}
 
@@ -62,7 +64,7 @@ public class PlayerAnimation : MonoBehaviour {
 		myAnim.SetBool ("IsUpset", false);
 		myAnim.SetBool ("IsPissed", false);
 		myAnim.SetBool ("IsAngry", false);
-
+		myAnim.SetBool ("IsBurned", false);
 	}
 
 
@@ -71,7 +73,7 @@ public class PlayerAnimation : MonoBehaviour {
 		myAnim.SetBool ("IsUpset", true);
 		myAnim.SetBool ("IsPissed", false);
 		myAnim.SetBool ("IsAngry", false);
-
+		myAnim.SetBool ("IsBurned", false);
 	}
 
 
@@ -80,7 +82,7 @@ public class PlayerAnimation : MonoBehaviour {
 		myAnim.SetBool ("IsUpset", false);
 		myAnim.SetBool ("IsPissed", true);
 		myAnim.SetBool ("IsAngry", false);
-
+		myAnim.SetBool ("IsBurned", false);
 	}
 
 
@@ -89,11 +91,25 @@ public class PlayerAnimation : MonoBehaviour {
 		myAnim.SetBool ("IsUpset", false);
 		myAnim.SetBool ("IsPissed", false);
 		myAnim.SetBool ("IsAngry", true);
-
+		myAnim.SetBool ("IsBurned", false);
 	}
 
 
 	public void MakeStun(){
 		myAnim.SetTrigger ("MakeStun");
+	}
+
+
+	public void MakeBurned(){
+		myAnim.SetBool ("IsNormal", false);
+		myAnim.SetBool ("IsUpset", false);
+		myAnim.SetBool ("IsPissed", false);
+		myAnim.SetBool ("IsAngry", false);
+		myAnim.SetBool ("IsBurned", true);
+	}
+
+
+	public void DestroyFire(){
+		Destroy (fireObject);
 	}
 }
