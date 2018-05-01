@@ -4,8 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/*This script counts score and rage,
- * and display them on screen*/
+/*	This script counts score and rage,
+	and display them on screen 
+	The main functionality of the game happens here:
+		- Player rage is displayed 
+		- Player current score is displayed
+		- Player unleashes rage here
+		- Camera shakes here
+		- Soundwave animation triggers here
+		- Game over state gets triggered here
+*/
 
 public class GameManager : MonoBehaviour {
 
@@ -100,11 +108,13 @@ public class GameManager : MonoBehaviour {
 		if ((rageMeter.value == maxRage) && (rageCount < 3) && !isDead) {
 			UnleashRage ();
 		}
-			
+	
+		//Shake the camera if player unleashes their rage (by pressing space)
 		if (setShake) {
 			ShakeCamera();
 		}
 
+		//Show a sound wave
 		if (setSoundAnim) {
 			TriggerSoundWave ();
 		}
@@ -120,7 +130,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	//Destroy all objects in scene
+	//Destroy all objects in scene when player presses space
 	void UnleashRage(){
 		allObstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 		if (Input.GetKeyDown ("space")) {
@@ -129,38 +139,47 @@ public class GameManager : MonoBehaviour {
 			for(var i = 0 ; i < allObstacles.Length ; i ++){
 				Destroy(allObstacles[i]);
 			}
+
+			//reset variables for player's rage 
 			currRage = 0;
 			maxRage -= 0.1f;
-
 			rageMeter.maxValue = maxRage;
 			rageMeter.value = currRage;
 
-			score -= 100;
+			//decrease score when player unleashes rage 
+			score -= 20;
+			//decrease rage count
 			rageCount += 1;
 
+			//reset the obstacles falling down to be less and slower 
 			FallingDown.increaseAmount = 3;
 			FallingDown.increaseCounter = 0;
 			FallingDown.minSpeed = 0f;
 			FallingDown.maxSpeed = 1f;
 
+			//set the boolean to shake the camera and turn on animation
 			setShake = true;
 			setSoundAnim = true;
 		}
 	}
 
+	//Shake the camera when player releases rage to add effect
 	void ShakeCamera(){
 		if (shakeTimer >= 0) {
+			//find a random point in the circle and shake it 
 			shakePos = Random.insideUnitCircle * shakeAmount;
+			//shake the camera 
 			cameraPos.position = new Vector3 (cameraPos.position.x + shakePos.x, cameraPos.position.y + shakePos.y, cameraPos.position.z);
+			//decrease the time of the shake
 			shakeTimer -= Time.deltaTime;
 		} else {
-			setShake = false;
-			cameraPos.position = new Vector3 (0, 0, -10);
-			shakeTimer = 1f;
+			setShake = false; //after time is done shake is done 
+			cameraPos.position = new Vector3 (0, 0, -10); //reset to original camera position
+			shakeTimer = 1f; //reset the time for shake for future shakes
 		}
 	}
 
-
+	//Trigger a sound wave when player releases rage
 	void TriggerSoundWave(){
 		GameObject newWave = Instantiate (soundWavePrefab) as GameObject;
 		newWave.transform.position = player.transform.position;
@@ -172,7 +191,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
+	//Game over state 
 	void GameOver(){
 		isDead = true;
 		player.GetComponent<SpriteRenderer> ().color = Color.white;
@@ -184,6 +203,7 @@ public class GameManager : MonoBehaviour {
 
 		deathTimer -= Time.deltaTime;
 
+		//load the end scene after a certain time
 		if (deathTimer <= 0) {
 			SceneManager.LoadScene ("endStage");
 		}
