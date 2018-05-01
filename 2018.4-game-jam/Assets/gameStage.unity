@@ -1201,6 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8bdf30c78e54503afa6e96eb5c0855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathTimer: 1
   rageMeter: {fileID: 1186772470}
   fillMeter: {fileID: 457946736}
   player: {fileID: 1182303983}
