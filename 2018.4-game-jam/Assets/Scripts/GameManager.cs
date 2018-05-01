@@ -17,14 +17,17 @@ public class GameManager : MonoBehaviour {
 	public Image fillMeter;
 	public GameObject player;
 
+	public Transform cameraPos;
 
 	private float score;
-
 	private int rageCount;
 	private GameObject scoreText;
 	private GameObject rageText;
 	private GameObject[] allObstacles;
-
+	private float shakeTimer;
+	private float shakeAmount;
+	private bool setShake;
+	private Vector2 shakePos;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +41,9 @@ public class GameManager : MonoBehaviour {
 		rageCount = 0;
 		//currRage = rageReceived;
 		currRage = 0;
+		shakeTimer = 1f;
+		shakeAmount = 0.2f;
+		setShake = false;
 	}
 
 
@@ -73,7 +79,11 @@ public class GameManager : MonoBehaviour {
 		if ((rageMeter.value == maxRage) && (rageCount < 3)) {
 			UnleashRage ();
 		}
-
+			
+		if (setShake) {
+			ShakeCamera();
+			//cameraPos.position = new Vector3 (0, 0, -10);
+		}
 
 		//Game over when rage bar overflows
 		if (currRage > (maxRage + 0.05f)) {
@@ -92,7 +102,6 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetKeyDown ("space")) {
 			player.GetComponent<PlayerAudioPlayer> ().PlayScream ();
 
-
 			for(var i = 0 ; i < allObstacles.Length ; i ++){
 				Destroy(allObstacles[i]);
 			}
@@ -109,6 +118,22 @@ public class GameManager : MonoBehaviour {
 			FallingDown.increaseCounter = 0;
 			FallingDown.minSpeed = 0f;
 			FallingDown.maxSpeed = 1f;
+
+			setShake = true;
+		}
+	}
+
+	public void ShakeCamera(){
+		if (shakeTimer >= 0) {
+			shakePos = Random.insideUnitCircle * shakeAmount;
+			cameraPos.position = new Vector3 (cameraPos.position.x + shakePos.x, cameraPos.position.y + shakePos.y, cameraPos.position.z);
+			shakeTimer -= Time.deltaTime;
+		} else {
+			setShake = false;
+			cameraPos.position = new Vector3 (0, 0, -10);
+			Debug.Log ("Set shake: " + setShake);
+			shakeTimer = 1;
 		}
 	}
 }
+
