@@ -716,7 +716,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f728bb15d23074ba89d938d313beb70d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -807,6 +807,7 @@ MonoBehaviour:
   upsetColor: {r: 1, g: 0.878, b: 0, a: 1}
   pissedColor: {r: 1, g: 0.49411765, b: 0, a: 1}
   angryColor: {r: 1, g: 0.087, b: 0, a: 1}
+  firePrefab: {fileID: 1508997314742824, guid: 523039c39606f91409834c51cb089f14, type: 2}
 --- !u!82 &1182303991
 AudioSource:
   m_ObjectHideFlags: 0

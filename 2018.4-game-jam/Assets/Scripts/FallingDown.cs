@@ -75,6 +75,9 @@ public class FallingDown : MonoBehaviour {
 		GameObject newObject = Instantiate(blocks, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
 
 		int spriteNum = Random.Range (0, 4);
+		while (spriteNum < 0 || spriteNum > 3) {
+			spriteNum = Random.Range (0, 4);
+		}
 		newObject.GetComponent<SpriteRenderer> ().sprite = spriteArray [spriteNum];
 
 		float scale = Random.Range (0.8f, 1.2f);
