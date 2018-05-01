@@ -9,27 +9,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	//public static float rageReceived;
-	public static float currRage;
-	public static float roundScore;
-	public static float maxRage;
+	//Variables relevant to rage
+	public static float currRage; //current rage value
+	public static float maxRage; //current maxium rage value players can receive
+	public Slider rageMeter; //Slider that shows rage value
+	public Image fillMeter; //How much to fill the rageMeter
+	private int rageCount; //How many times has the player unleashed rage
 
-	public float deathTimer;
-	public Slider rageMeter;
-	public Image fillMeter;
-	public GameObject player;
 
+	//Variables relevant to screenshake
 	public Transform cameraPos;
+	private Vector2 shakePos; //Shake offset
+	private bool setShake; //If the screen is shaking
+	private float shakeAmount; //The maximum offset
+	private float shakeTimer; //How long to keep shaking
 
+
+	//Variables relevant to sound wave animation
+	private bool setSoundAnim; //If triggering sound wave animation
+	private float soundAnimTimer; //How long the sound wave animation keeps playing
+
+
+	//Variables relevant to player death
+	private bool isDead;
+	public float deathTimer; //How much the death animation last before loading fail scene
+
+
+	//Variables relevant to score and remaining chances to unleash rage 
 	private float score;
-	private int rageCount;
+	public static float roundScore;
 	private GameObject scoreText;
 	private GameObject rageText;
+
+
+	public GameObject player;
+	public GameObject soundWavePrefab;
 	private GameObject[] allObstacles;
-	private float shakeTimer;
-	private float shakeAmount;
-	private bool setShake;
-	private Vector2 shakePos;
+
 
 	// Use this for initialization
 	void Start () {
@@ -39,13 +55,14 @@ public class GameManager : MonoBehaviour {
 		maxRage = 1;
 		rageMeter.value = 0;
 		rageMeter.maxValue = maxRage;
-		//rageReceived = 0;
-		rageCount = 0;
-		//currRage = rageReceived;
+		rageCount = 0;	
 		currRage = 0;
 		shakeTimer = 1f;
-		shakeAmount = 0.2f;
+		soundAnimTimer = 1f;
+		shakeAmount = 0.15f;
 		setShake = false;
+		setSoundAnim = false;
+		isDead = false;
 
 		player.GetComponent<PlayerMovement> ().enabled = true;
 	}
@@ -80,13 +97,16 @@ public class GameManager : MonoBehaviour {
 
 
 		//If there's still chance to unleash rage and rage bar is full, let player unleash rage
-		if ((rageMeter.value == maxRage) && (rageCount < 3)) {
+		if ((rageMeter.value == maxRage) && (rageCount < 3) && !isDead) {
 			UnleashRage ();
 		}
 			
 		if (setShake) {
 			ShakeCamera();
-			//cameraPos.position = new Vector3 (0, 0, -10);
+		}
+
+		if (setSoundAnim) {
+			TriggerSoundWave ();
 		}
 
 		//Game over when rage bar overflows
@@ -124,10 +144,11 @@ public class GameManager : MonoBehaviour {
 			FallingDown.maxSpeed = 1f;
 
 			setShake = true;
+			setSoundAnim = true;
 		}
 	}
 
-	public void ShakeCamera(){
+	void ShakeCamera(){
 		if (shakeTimer >= 0) {
 			shakePos = Random.insideUnitCircle * shakeAmount;
 			cameraPos.position = new Vector3 (cameraPos.position.x + shakePos.x, cameraPos.position.y + shakePos.y, cameraPos.position.z);
@@ -135,15 +156,28 @@ public class GameManager : MonoBehaviour {
 		} else {
 			setShake = false;
 			cameraPos.position = new Vector3 (0, 0, -10);
-			Debug.Log ("Set shake: " + setShake);
-			shakeTimer = 1;
+			shakeTimer = 1f;
+		}
+	}
+
+
+	void TriggerSoundWave(){
+		GameObject newWave = Instantiate (soundWavePrefab) as GameObject;
+		newWave.transform.position = player.transform.position;
+
+		soundAnimTimer -= Time.deltaTime;
+		if (soundAnimTimer <= 0) {
+			setSoundAnim = false;
+			soundAnimTimer = 1f;
 		}
 	}
 
 
 	void GameOver(){
+		isDead = true;
 		player.GetComponent<SpriteRenderer> ().color = Color.white;
 		player.GetComponent<PlayerMovement> ().enabled = false;
+		player.GetComponent<PlayerAnimation> ().enabled = false;
 
 		player.GetComponent<PlayerAnimation> ().DestroyFire ();
 		player.GetComponent<PlayerAnimation> ().MakeBurned ();
