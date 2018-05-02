@@ -168,7 +168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: daeee28e1cd9f4bde926c29e0bec4af3, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -219,8 +219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.6, y: -31}
-  m_SizeDelta: {x: 547.1, y: 100}
+  m_AnchoredPosition: {x: 11, y: -41.3}
+  m_SizeDelta: {x: 547.1, y: 137.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197058816
 MonoBehaviour:
@@ -242,11 +242,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: daeee28e1cd9f4bde926c29e0bec4af3, type: 3}
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -256,9 +256,12 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Dodge the obstacles falling down!
 
+    Release your rage up to z times when your rage meter is maxed, or else you lose!
+    Be careful! Releasing rage gives a penalty!
+
 
     Controls: Press space key when your rage meter is filled to release your rage.
-    Use the mouse to move your character around the canvas'
+    Use the mouse to move your character.'
 --- !u!222 &197058817
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -670,8 +673,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 52.249573}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 11, y: 77.973206}
+  m_SizeDelta: {x: 372.8, y: 124.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1654011893
 MonoBehaviour:
@@ -693,12 +696,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_Font: {fileID: 12800000, guid: daeee28e1cd9f4bde926c29e0bec4af3, type: 3}
+    m_FontSize: 80
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
