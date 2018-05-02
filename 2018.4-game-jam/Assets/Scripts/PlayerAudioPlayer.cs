@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAudioPlayer : MonoBehaviour {
 
 	public AudioClip screamClip;
+	public AudioClip moanClip;
 
 	AudioSource myAudioPlayer;
 
@@ -29,5 +30,15 @@ public class PlayerAudioPlayer : MonoBehaviour {
 		if (!myAudioPlayer.isPlaying) {
 			myAudioPlayer.Play ();
 		}
+	}
+
+	public void PlayMoan(){
+		myAudioPlayer.loop = false;
+
+		if (myAudioPlayer.clip != moanClip) {
+			myAudioPlayer.clip = moanClip;
+		}
+			
+		myAudioPlayer.Play ();
 	}
 }

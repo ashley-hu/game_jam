@@ -38,6 +38,7 @@ public class BlockOptions : MonoBehaviour {
 		//if collide with player, play animation and destroy the obstacle
 		if(coll.gameObject.tag == "Player"){
 			player.GetComponent<PlayerAnimation> ().MakeStun ();
+			player.GetComponent<PlayerAudioPlayer> ().PlayMoan ();
 			GameManager.currRage += 0.1f; //keep count of rage for losing condition
 			Destroy (this.gameObject);
 		}
