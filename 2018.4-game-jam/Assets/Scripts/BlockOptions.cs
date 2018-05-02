@@ -8,6 +8,9 @@ using UnityEngine;
  * */
 public class BlockOptions : MonoBehaviour {
 
+	//Vein particles prefab
+	public GameObject veinPrefab;
+
 	//Variable for the speed of the block
 	public float speed;
 
@@ -35,10 +38,16 @@ public class BlockOptions : MonoBehaviour {
 
 	//Check if obstacle collide with player 
 	void OnCollisionEnter2D(Collision2D coll){
-		//if collide with player, play animation and destroy the obstacle
+		//if collide with player, play animation, sound, and destroy the obstacle
 		if(coll.gameObject.tag == "Player"){
 			player.GetComponent<PlayerAnimation> ().MakeStun ();
 			player.GetComponent<PlayerAudioPlayer> ().PlayMoan ();
+
+			//Emit a vein particle
+			GameObject newVein = Instantiate (veinPrefab) as GameObject;
+			newVein.transform.position = player.transform.position;
+
+
 			GameManager.currRage += 0.1f; //keep count of rage for losing condition
 			Destroy (this.gameObject);
 		}

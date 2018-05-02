@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b284572bb054b43838cf5f10a4d1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  veinPrefab: {fileID: 1340581003181834, guid: a4f60342faa3b4adfbd922fd45a12f7d, type: 2}
   speed: 0
 --- !u!212 &212374219280651224
 SpriteRenderer:
