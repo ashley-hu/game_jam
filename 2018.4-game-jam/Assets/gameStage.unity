@@ -835,7 +835,6 @@ MonoBehaviour:
   upsetColor: {r: 1, g: 0.878, b: 0, a: 1}
   pissedColor: {r: 1, g: 0.49411765, b: 0, a: 1}
   angryColor: {r: 1, g: 0.087, b: 0, a: 1}
-  firePrefab: {fileID: 1508997314742824, guid: 523039c39606f91409834c51cb089f14, type: 2}
 --- !u!82 &1182303991
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1235,6 +1234,7 @@ MonoBehaviour:
   fillMeter: {fileID: 457946736}
   cameraPos: {fileID: 146725650}
   deathTimer: 1
+  firePrefab: {fileID: 1508997314742824, guid: 523039c39606f91409834c51cb089f14, type: 2}
   player: {fileID: 1182303983}
   soundWavePrefab: {fileID: 1406860063267776, guid: a0f58c2bb0d6b4dd6827c4c5e5ec2c8d,
     type: 2}
@@ -1249,7 +1249,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4caa43bfff25f44c0ae93c62f995d609, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0

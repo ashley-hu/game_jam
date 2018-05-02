@@ -50,6 +50,12 @@ public class GameManager : MonoBehaviour {
 	private GameObject rageText;
 
 
+	//Variables relevant to set player on fire
+	private bool isOnFire = false;
+	public GameObject firePrefab;
+	private GameObject fireObject;
+
+
 	public GameObject player;
 	public GameObject soundWavePrefab;
 	private GameObject[] allObstacles;
@@ -104,9 +110,20 @@ public class GameManager : MonoBehaviour {
 		}
 
 
-		//If there's still chance to unleash rage and rage bar is full, let player unleash rage
-		if ((rageMeter.value == maxRage) && (rageCount < 3) && !isDead) {
-			UnleashRage ();
+		//Set player on fire if rage reaches max value
+		if (rageMeter.value != maxRage) {
+			isOnFire = false;
+
+			if (fireObject != null) {
+				Destroy (fireObject);
+			}
+		}else {
+			SetFire ();
+
+			//If there's still chance to unleash rage and player isn't dead, let player unleash rage
+			if ((rageCount < 3) && !isDead) {
+				UnleashRage ();
+			}
 		}
 	
 		//Shake the camera if player unleashes their rage (by pressing space)
@@ -163,6 +180,20 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	//Set player on fire when rage reaches max
+	void SetFire(){
+		if (!isOnFire) {
+			fireObject = Instantiate (firePrefab, player.transform.position, Quaternion.Euler (new Vector3 (-90, 0, 0))) as GameObject;
+			fireObject.transform.localScale = new Vector3 (0.5f, 0f, 1f);
+
+			isOnFire = true;
+		}
+
+		if (fireObject != null) {
+			fireObject.transform.position = player.transform.position + 0.5f * Vector3.up;
+		}
+	}
+
 	//Shake the camera when player releases rage to add effect
 	void ShakeCamera(){
 		if (shakeTimer >= 0) {
@@ -194,12 +225,15 @@ public class GameManager : MonoBehaviour {
 	//Game over state 
 	void GameOver(){
 		isDead = true;
+		if (fireObject != null) {
+			Destroy (fireObject);
+		}
+
 		player.GetComponent<SpriteRenderer> ().color = Color.white;
 		player.GetComponent<PlayerMovement> ().enabled = false;
-		player.GetComponent<PlayerAnimation> ().enabled = false;
-
-		player.GetComponent<PlayerAnimation> ().DestroyFire ();
+		player.GetComponent<PlayerAudioPlayer> ().enabled = false;
 		player.GetComponent<PlayerAnimation> ().MakeBurned ();
+		player.GetComponent<PlayerAnimation> ().enabled = false;
 
 		deathTimer -= Time.deltaTime;
 

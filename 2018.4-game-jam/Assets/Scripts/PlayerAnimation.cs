@@ -9,12 +9,9 @@ public class PlayerAnimation : MonoBehaviour {
 	public Color pissedColor;
 	public Color angryColor;
 
-	public GameObject firePrefab;
 
-	bool isOnFire = false;
 	Animator myAnim;
 	SpriteRenderer mySpriRend;
-	GameObject fireObject;
 
 	// Use this for initialization
 	void Start () {
@@ -28,33 +25,15 @@ public class PlayerAnimation : MonoBehaviour {
 		if (GameManager.currRage <= (GameManager.maxRage / 4f)) {
 			MakeNormal ();
 			mySpriRend.color = normalColor;
-
-			isOnFire = false;
-			DestroyFire ();
 		} else if (GameManager.currRage <= (2 * (GameManager.maxRage / 4f))) {
 			MakeUpset ();
 			mySpriRend.color = upsetColor;
-
-			isOnFire = false;
 		} else if (GameManager.currRage <= (3 * (GameManager.maxRage / 4f))) {
 			MakePissed ();
 			mySpriRend.color = pissedColor;
-
-			isOnFire = false;
 		} else {
 			MakeAngry ();
 			mySpriRend.color = angryColor;
-
-			if (!isOnFire) {
-				fireObject = Instantiate (firePrefab, transform.position, Quaternion.Euler (new Vector3 (-90, 0, 0))) as GameObject;
-				fireObject.transform.localScale = new Vector3 (0.5f, 0f, 1f);
-
-				isOnFire = true;
-			}
-
-			if (fireObject != null) {
-				fireObject.transform.position = this.transform.position + 0.5f * Vector3.up;
-			}
 		}
 	}
 
@@ -106,10 +85,5 @@ public class PlayerAnimation : MonoBehaviour {
 		myAnim.SetBool ("IsPissed", false);
 		myAnim.SetBool ("IsAngry", false);
 		myAnim.SetBool ("IsBurned", true);
-	}
-
-
-	public void DestroyFire(){
-		Destroy (fireObject);
 	}
 }
