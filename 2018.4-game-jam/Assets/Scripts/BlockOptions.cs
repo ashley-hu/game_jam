@@ -47,7 +47,6 @@ public class BlockOptions : MonoBehaviour {
 			GameObject newVein = Instantiate (veinPrefab) as GameObject;
 			newVein.transform.position = player.transform.position;
 
-
 			GameManager.currRage += 0.1f; //keep count of rage for losing condition
 			Destroy (this.gameObject);
 		}

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/*	This script counts score and rage,
+/*	GameManager class
+ 	This script counts score and rage,
 	and display them on screen 
 	The main functionality of the game happens here:
 		- Player rage is displayed 

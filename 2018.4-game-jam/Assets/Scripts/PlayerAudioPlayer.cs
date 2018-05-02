@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * PlayerAudioPlayer class
+ * This class keeps track of the audio for the player
+ * 
+*/
 public class PlayerAudioPlayer : MonoBehaviour {
 
 	public AudioClip screamClip;
@@ -13,13 +18,8 @@ public class PlayerAudioPlayer : MonoBehaviour {
 	void Start () {
 		myAudioPlayer = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-
+	//Play the scream sound when rage is released
 	public void PlayScream(){
 		myAudioPlayer.loop = false;
 
@@ -32,6 +32,7 @@ public class PlayerAudioPlayer : MonoBehaviour {
 		}
 	}
 
+	//Play the moan sound when collided with object
 	public void PlayMoan(){
 		myAudioPlayer.loop = false;
 

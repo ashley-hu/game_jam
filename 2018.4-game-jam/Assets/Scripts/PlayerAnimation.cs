@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * PlayerAnimation class
+ * Manages the different animations for the player
+*/
 public class PlayerAnimation : MonoBehaviour {
 
 	public Color normalColor;
@@ -22,6 +26,7 @@ public class PlayerAnimation : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//Change the player's animation and color based on their current rage
 		if (GameManager.currRage <= (GameManager.maxRage / 4f)) {
 			MakeNormal ();
 			mySpriRend.color = normalColor;
@@ -37,7 +42,7 @@ public class PlayerAnimation : MonoBehaviour {
 		}
 	}
 
-
+	//Animation is dependent on the boolean values that are set
 	void MakeNormal(){
 		myAnim.SetBool ("IsNormal", true);
 		myAnim.SetBool ("IsUpset", false);
@@ -77,7 +82,6 @@ public class PlayerAnimation : MonoBehaviour {
 	public void MakeStun(){
 		myAnim.SetTrigger ("MakeStun");
 	}
-
 
 	public void MakeBurned(){
 		myAnim.SetBool ("IsNormal", false);
